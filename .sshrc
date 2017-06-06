@@ -1,0 +1,40 @@
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+alias foo='echo I work with tmux, too'
+
+###########
+# Aliases #
+###########
+alias ee="exit"
+alias p='`which ping`'
+alias sk="cat ~/.ssh/id_rsa.pub"
+alias ls='ls --color=auto'
+
+# Git commands
+alias gcl="git clone "
+alias ga="git add "
+alias gc="git commit"
+alias gp="git push origin master"
+alias gs="git status"
+alias gpl="git pull"
+
+
+tmuxrc() {
+    local TMUXDIR=/tmp/mattdtmuxserver
+    if ! [ -d $TMUXDIR ]; then
+        rm -rf $TMUXDIR
+        mkdir -p $TMUXDIR
+    fi
+    rm -rf $TMUXDIR/.sshrc.d
+    cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
+
+    # -S Share a socket in a fixed directory so that sessions for me are retained and reused
+    local TMUX_COMMAND="/usr/bin/tmux -f $SSHHOME/.sshrc.d/tmux.conf -S $TMUXDIR/tmuxserver"
+
+    # SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc /usr/bin/tmux -S $TMUXDIR/tmuxserver $@
+    if $TMUX_COMMAND has-session; then
+      SSHHOME=$TMUXDIR SHELL=$SSHHOME/.sshrc.d/bash-tmux exec $TMUX_COMMAND attach $@
+    else
+      SSHHOME=$TMUXDIR SHELL=$SSHHOME/.sshrc.d/bash-tmux exec $TMUX_COMMAND $@
+    fi
+}
+export SHELL=`which bash`

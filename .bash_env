@@ -1,0 +1,18 @@
+###############
+# Directories #
+###############
+bin="${HOME}/bin"
+db="${HOME}/Dropbox"
+dt="${HOME}/Desktop"
+dc="${HOME}/Documents"
+dl="${HOME}/Downloads"
+sc="${HOME}/.ssh/config"
+pf="${HOME}/dev/profile"
+vt="/Volumes/vault-1"
+###########
+# Exports #
+###########
+
+##########
+# Extras #
+##########

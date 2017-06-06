@@ -1,0 +1,23 @@
+OS='Mac'
+VERS="`sw_vers | grep "ProductVersion" | cut -f2 | awk -F"." '{print $1"."$2}'`"
+#HN=`networksetup -getcomputername`
+HN=`hostname | cut -f1 -d'.'`
+SD=`echo $HN | cut -d '.' -f2-`
+#ETH="en0"
+#ETH="`/sbin/ifconfig | grep -B7 "status: active" | head -n 1 | cut -f1 -d':'`"
+ETH="`/sbin/ifconfig | grep -B7 "status: active" | grep '^en' | tail -n 1 | cut -f1 -d':'`"
+NETLOC="`networksetup -getcurrentlocation`"
+app='/Applications'
+
+MY_IP=$(/sbin/ifconfig $ETH | grep "inet " | cut -f2 -d' ')
+MY_MAC=$(/sbin/ifconfig en0 | grep "ether " | cut -f2 -d' ')
+
+##
+## BREW
+##
+export HOMEBREW_CASK_OPTS='--appdir=/Applications --caskroom=/etc/Caskroom'
+
+##
+## OS X Terminal
+##
+bind 'set mark-symlinked-directories on' # Adds / to end of tab complete. i.e. /etc -> /etc/
