@@ -2,6 +2,8 @@
 
 ## Resources
 
+* <https://dotfiles.github.io/>
+
 ### Examples `.bashrc` files
 
 * <http://natelandau.com/my-mac-osx-bash_profile/>
