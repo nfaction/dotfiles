@@ -1,0 +1,17 @@
+###################
+## Mac Functions ##
+###################
+OS_VER=$(uname) # Darwin
+# Flush DNS
+if [[ $VERS == '10.10' ]]; then
+  alias flushdns="sudo discoveryutil udnsflushcaches"
+elif [[ $VERS == '10.9' ]]; then
+	alias flushdns="dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
+else
+	alias flushdns="sudo killall -HUP mDNSResponder"
+fi
+
+########
+# Brew #
+########
+if [ -f $(brew --prefix)/etc/bash_completion ]; then source $(brew --prefix)/etc/bash_completion; fi

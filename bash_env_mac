@@ -1,0 +1,36 @@
+###############################
+## Mac Environment Variables ##
+###############################
+
+###############
+# Directories #
+###############
+app='/Applications'
+
+##############
+# OS Version #
+##############
+OS='Mac'
+VERS="`sw_vers | grep "ProductVersion" | cut -f2 | awk -F"." '{print $1"."$2}'`"
+
+##############
+# Networking #
+##############
+ETH="`/sbin/ifconfig | grep -B7 "status: active" | grep '^en' | tail -n 1 | cut -f1 -d':'`"
+NETLOC="`networksetup -getcurrentlocation`"
+MY_IP=$(/sbin/ifconfig $ETH | grep "inet " | cut -f2 -d' ')
+MY_MAC=$(/sbin/ifconfig en0 | grep "ether " | cut -f2 -d' ')
+
+###########
+# Exports #
+###########
+# Brew
+export HOMEBREW_CASK_OPTS='--appdir=/Applications --caskroom=/etc/Caskroom'
+
+##
+## OS X Terminal
+##
+bind 'set mark-symlinked-directories on' # Adds / to end of tab complete. i.e. /etc -> /etc/
+
+# Deprecated
+#HN=`networksetup -getcomputername`

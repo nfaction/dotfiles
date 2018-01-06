@@ -1,0 +1,27 @@
+##################################
+## Global Environment Variables ##
+##################################
+
+###############
+# Directories #
+###############
+dev="${HOME}/dev"
+db="${HOME}/Dropbox"
+dt="${HOME}/Desktop"
+dc="${HOME}/Documents"
+dl="${HOME}/Downloads"
+sc="${HOME}/.ssh/config"
+
+##############
+# Networking #
+##############
+HN=$(hostname | cut -f1 -d'.')
+SD=$(echo $HN | cut -d '.' -f2-)
+
+###########
+# Exports #
+###########
+
+##########
+# Extras #
+##########

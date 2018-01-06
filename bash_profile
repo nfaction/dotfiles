@@ -1,11 +1,13 @@
-######################################
-## .bashrc written by Matt DePorter ##
-######################################
+#############################
+##  .bash_profile/.bashrc  ##
+#############################
+## written by Matt DePorter #
+#############################
 
 ######################
 # Source extra files #
 ######################
-bash_files=".bash_aliases .bash_env .bash_functions"
+bash_files=".bash_aliases .bash_env .bash_functions .dotfiles/tmuxinator.bash"
 
 # Load each file into profile, one by one
 for f in $bash_files; do
@@ -21,3 +23,8 @@ done
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
+
+##########
+# iTerm2 #
+##########
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
