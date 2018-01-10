@@ -39,43 +39,25 @@ function kc ()
   cat ~/.ssh/id_rsa.pub | ssh $host -p $ssh_port 'cat >> ~/.ssh/authorized_keys'
 }
 
-###########################################
-# Perform NSLookup forwards and backwards #
-###########################################
-# e.g. nsl <hostname> 10.0.0.10{1..9}     #
-###########################################
-function nsl ()
+########################################
+# Check to see if a reboot is required #
+########################################
+# e.g. reboot-required                 #
+########################################
+function reboot-required ()
 {
-  if [ $# == 0 ]
-    then
-      echo "Please specify hostname(s) and/or IP(s)..."
-      echo "Exiting..."
-      return 1
-  fi
-  rx='([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'
-  for i in $@
-  do
-    echo "Looking up $i..."
-    # If IP address was used
-    if [[ $i =~ ^$rx\.$rx\.$rx\.$rx$ ]]; then
-      echo $i
-      nslookup $i | grep "name =" | tail -1 | awk '{ print $4 }'
-      nslookup $i | grep ".in-addr.arpa" | tail -1 | awk '{ print $1 }'
-    # If hostname was used
-    else
-      ip=`nslookup $i | grep "Address:" | tail -1 | cut -f2 -d' '`
-      echo $ip
-      nslookup $ip | grep ".in-addr.arpa" | tail -1 | awk '{ print $4 }'
-      nslookup $ip | grep ".in-addr.arpa" | tail -1 | awk '{ print $1 }'
-    fi
+  if [ -a /var/run/reboot-required ];then
+    echo "A reboot is required!"
     echo
-  done
+  else
+    echo "A reboot is NOT required."
+  fi
 }
 
 ######################
 # Read secret string #
 ######################
-read_secret()
+function read_secret ()
 {
     # Disable echo.
     stty -echo
