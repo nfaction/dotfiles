@@ -26,6 +26,7 @@ MY_MAC=$(/sbin/ifconfig en0 | grep "ether " | cut -f2 -d' ')
 ###########
 # Brew
 export HOMEBREW_CASK_OPTS='--appdir=/Applications --caskroom=/etc/Caskroom'
+export PATH="/usr/local/bin:$PATH"
 
 ##
 ## OS X Terminal
