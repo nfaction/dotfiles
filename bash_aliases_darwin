@@ -26,7 +26,7 @@ alias indexoff='sudo mdutil -a -i off'
 # Tools #
 #########
 # GUI Editors
-alias st="open -a /Applications/Sublime\ Text\ 2.app/ "
+alias st="open -a /Applications/Sublime\ Text.app/ "
 alias mvim="open -a /Applications/MacVim.app"
 
 alias sethostname="sudo scutil –-set HostName "
