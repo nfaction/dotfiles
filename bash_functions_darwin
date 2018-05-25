@@ -59,3 +59,10 @@ function ct ()
   fdate=$1
   echo `date -j -f '%Y-%m-%d' ${fdate} +%s` / 86400 | bc
 }
+
+function ipmi() {
+    host=$1
+    shift
+
+    ipmitool -I lanplus -U root -P '01ikvM)!' -H "${host}" $@
+}
