@@ -34,7 +34,7 @@ alias sethostname="sudo scutil –-set HostName "
 alias ulkey="security unlock-keychain && eval `ssh-agent -s`"  # Unlock keychain for ssh key
 
 # Watch
-alias watch='_() { while :; do clear; $@; sleep 2; done }; _'
+#alias watch='_() { while :; do clear; $@; sleep 2; done }; _'
 
 ########
 # Brew #
