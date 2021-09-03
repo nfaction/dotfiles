@@ -70,3 +70,20 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
+" ------- gist making! --------------------------------
+fun Gister(...)
+  let gister_call = "gister -v"
+  for flag in a:000
+    let gister_call = gister_call . " " . flag
+  endfor
+  let result = system(gister_call, expand("%:t") . "\n" . getreg("\""))
+  echo result
+endfun
+" secret gist on public github from selection or single line
+" vnoremap <F9> y:call Gister()<cr>
+" nnoremap <F9> yy:call Gister()<cr>
+
+" secret gist on private github from selection or single line
+vnoremap <F6> y:call Gister("-p")<cr>
+nnoremap <F6> yy:call Gister("-p")<cr>
+" ------- end pastie.org ---------------------------
