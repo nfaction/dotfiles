@@ -28,8 +28,9 @@ alias grep='grep --colour'
 ################
 alias gcl="git clone "
 alias ga="git add "
-alias gc="git commit"
+alias gc="git commit -m "
 alias gp="git push origin main"
+alias gpm="git push origin master"
 alias gs="git status"
 alias gr="git remote -v"
 alias gpl="git pull"
