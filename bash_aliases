@@ -60,3 +60,5 @@ alias rs="rsync -avz "
 alias 'ps?'='ps ax | grep '
 alias ascii='for i in {1..256};do p="  $i";echo -e "${p: -3} \\0$(($i/64*100+$i%64/8*10+$i%8))";done|cat -t|column -c120'
 alias times="date -r "
+
+alias ai='cd ~/dev/delta-ai-config'
